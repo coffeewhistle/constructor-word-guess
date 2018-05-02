@@ -7,3 +7,24 @@
 // A function that returns the underlying character if the letter has been guessed, or a placeholder (like an underscore) if the letter has not been guessed
 
 // A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly
+
+function Letter(stringLetter) {
+    this.stringLetter = stringLetter;
+    this.guessed = false;
+    this.letterGuessed = function () {
+        if (this.guessed === false) {
+            return " _ ";
+        } else {
+            return this.stringLetter;
+        }
+    };
+    this.character = function(character) {
+        if (character === this.stringLetter) {
+            this.guessed = true;
+        }
+    };
+}
+
+var letter = new Letter("a");
+
+console.log(letter.character("a"));
