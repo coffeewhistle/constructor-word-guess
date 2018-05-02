@@ -12,19 +12,24 @@ function Letter(stringLetter) {
     this.stringLetter = stringLetter;
     this.guessed = false;
     this.letterGuessed = function () {
-        if (this.guessed === false) {
+        if (this.guessed === false && this.stringLetter != " ") {
             return " _ ";
+        } else if(this.guessed === false && this.stringLetter === " ") {
+            return "   ";
         } else {
             return this.stringLetter;
         }
     };
-    this.character = function(character) {
+    this.inputChar = function(character) {
         if (character === this.stringLetter) {
             this.guessed = true;
+            return true;
+        } else {
+            return false;
         }
     };
 }
 
-var letter = new Letter("a");
-
-console.log(letter.character("a"));
+module.exports = {
+    Letter: Letter
+};
