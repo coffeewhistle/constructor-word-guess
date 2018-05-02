@@ -29,7 +29,6 @@ function Word(word) {
     };
 }
 
-var word = new Word("this is a test");
-
-console.log(word.guess("t"));
-console.log(word.string());
+module.exports = {
+    Word: Word
+};

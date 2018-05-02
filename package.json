@@ -1,0 +1,23 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "packages needed for constructor word guess game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coffeewhistle/constructor-word-guess.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coffeewhistle/constructor-word-guess/issues"
+  },
+  "homepage": "https://github.com/coffeewhistle/constructor-word-guess#readme",
+  "dependencies": {
+    "inquirer": "^5.2.0",
+    "random-words": "^1.1.0"
+  }
+}
