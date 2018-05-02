@@ -9,7 +9,7 @@ var wordImport = require("./Word.js");
 var inquirer = require("inquirer");
 
 var Word = wordImport.Word;
-var remainingGuesses = 10;
+var remainingGuesses;
 var wordToGuess;
 
 // Generic function to check if the word is completed
@@ -17,11 +17,21 @@ var wordToGuess;
 newGame();
 
 function newGame() {
+    remainingGuesses = 10;
     wordToGuess = new Word(randomWords());
+    console.log("\n" + wordToGuess.string() + "\n");
     playRound();
 }
 
 function checkround() {
+    if (remainingGuesses < 1) {
+        console.log("###############################################");
+        console.log("");
+        console.log("You lose! Terrible job guessing!");
+        console.log("");
+        console.log("###############################################");
+        newGame();
+    }
     if (wordToGuess.letterArr.guessed === true) {
 
         console.log("###############################################");
@@ -39,15 +49,19 @@ function checkround() {
 function playRound() {
     inquirer.prompt([
         {
-            type: "text",
+            type: "input",
             name: "guess",
             message: "Guess a letter: ",
+            validate: validateChar
         }
     ]).then(function (guess) {
-        if (guess.guess === wordToGuess.guess()) {
-            console.log("It worked!");
-        }
-        console.log("\n" + wordToGuess.string() + "\n");
+        console.log("\n" + wordToGuess.string());
+        remainingGuesses -= 1;
+        console.log("Remaining guesses: " + remainingGuesses + "\n");
         checkround();
     });
+}
+
+function validateChar(char) {
+    return char.length < 2;
 }
