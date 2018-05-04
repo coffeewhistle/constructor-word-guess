@@ -25,7 +25,6 @@ function newGame() {
 }
 
 function playRound() {
-    console.log(wordToGuess.string());
     if (remainingGuesses > 0) {
         inquirer.prompt([
             {
