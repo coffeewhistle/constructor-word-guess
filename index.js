@@ -30,16 +30,21 @@ function playRound() {
             {
                 name: "letter",
                 message: "Guess a letter"
+                
             }
         ]).then(function (answers) {
             wordToGuess.guess(answers.letter);
-            console.log(wordToGuess.string());
+            console.log("\n" + wordToGuess.string() + "\n");
             remainingGuesses--;
             checkRound();
         });
     } else {
+        var wordDisplay = [];
+        for (var i = 0; i < wordToGuess.letterArr.length; i++) {
+            wordDisplay.push(wordToGuess.letterArr[i].stringLetter);
+        }
         console.log("You lose!");
-        console.log(wordToGuess.letterArr);
+        console.log("\nThe word you missed was: " + wordDisplay.join("") + "\n");
         startOver();
     }
 }

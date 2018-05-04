@@ -17,7 +17,7 @@ function Letter(stringLetter) {
         } else if(this.guessed === false && this.stringLetter === " ") {
             return "   ";
         } else {
-            return this.stringLetter;
+            return " " + this.stringLetter + " ";
         }
     };
     this.inputChar = function(character) {
