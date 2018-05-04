@@ -11,57 +11,12 @@ var inquirer = require("inquirer");
 var Word = wordImport.Word;
 var remainingGuesses;
 var wordToGuess;
+var count = 0;
 
 // Generic function to check if the word is completed
 
-newGame();
-
 function newGame() {
-    remainingGuesses = 10;
     wordToGuess = new Word(randomWords());
-    console.log("\n" + wordToGuess.string() + "\n");
-    playRound();
-}
-
-function checkround() {
-    if (remainingGuesses < 1) {
-        console.log("###############################################");
-        console.log("");
-        console.log("You lose! Terrible job guessing!");
-        console.log("");
-        console.log("###############################################");
-        newGame();
-    }
-    if (wordToGuess.letterArr.guessed === true) {
-
-        console.log("###############################################");
-        console.log("");
-        console.log("You win! Good job guessing!");
-        console.log("");
-        console.log("###############################################");
-
-    } else {
-        playRound();
-    }
-}
-
-// Game logic
-function playRound() {
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "guess",
-            message: "Guess a letter: ",
-            validate: validateChar
-        }
-    ]).then(function (guess) {
-        console.log("\n" + wordToGuess.string());
-        remainingGuesses -= 1;
-        console.log("Remaining guesses: " + remainingGuesses + "\n");
-        checkround();
-    });
-}
-
-function validateChar(char) {
-    return char.length < 2;
+    remainingGuesses = 10;
+    
 }
