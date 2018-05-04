@@ -20,7 +20,7 @@ newGame();
 function newGame() {
     wordToGuess = new Word(randomWords());
     remainingGuesses = 10;
-    console.log(wordToGuess);
+    // console.log(wordToGuess);
     playRound();
 }
 
@@ -35,15 +35,42 @@ function playRound() {
             wordToGuess.guess(answers.letter);
             console.log(wordToGuess.string());
             remainingGuesses--;
-            playRound();
+            checkRound();
         });
+    } else {
+        console.log("You lose!");
+        console.log(wordToGuess.letterArr);
+        startOver();
     }
 }
 
 function checkRound() {
     var letterArr = wordToGuess.letterArr;
-    
+    var corrects = 0;
     for (var i = 0; i < letterArr.length; i++) {
-        
+        if (letterArr[i].guessed === true) {
+            corrects++;
+        }
     }
+    if (corrects === letterArr.length) {
+        console.log("You win!");
+        startOver();
+    } else {
+        playRound();
+    }
+}
+
+function startOver() {
+    inquirer.prompt([
+        {
+            name: "continue",
+            message:"Continue? (Y/N)"
+        }
+    ]).then(function(answers) {
+        if (answers.continue === "Y") {
+            newGame();
+        } else {
+            process.exit();
+        }
+    });
 }
